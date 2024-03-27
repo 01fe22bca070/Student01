@@ -1,6 +1,9 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
+
 
 class Student{
     private String name;
@@ -26,7 +29,30 @@ class Student{
         Student stu = new Student("Hazra","2003-12-04");
         stu.displayage();
         stu.displaystudentname();
+        StudentCourses studentCourses = new StudentCourses();
 
-      
+        // Add some courses and marks
+        studentCourses.addCourse("Java", 80);
+        studentCourses.addCourse("Data Structures", 85);
+        studentCourses.addCourse("Operating Systems", 70);
+
+        // Display the courses and marks
+        studentCourses.displayCourses();
+    
     }
 }
+class StudentCourses {
+    private Map<String, Integer> courses = new HashMap<>();
+
+    public void addCourse(String name, int marks) {
+        courses.put(name, marks);
+    }
+
+    public void displayCourses() {
+        System.out.println("\nCourses and Marks:");
+        for (Map.Entry<String, Integer> entry : courses.entrySet()) {
+            System.out.println("Course: " + entry.getKey() + ", Marks: " + entry.getValue());
+        }
+    }
+}
+
